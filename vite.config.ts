@@ -1,7 +1,10 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
-import PurgeIcons from 'vite-plugin-purge-icons'
+import { createStyleImportPlugin, ElementPlusResolve } from 'vite-plugin-style-import'
+
+// Uno CSS
+import UnoCSS from 'unocss/vite'
 
 const root = process.cwd()
 
@@ -13,8 +16,26 @@ function pathResolve(dir: string) {
 export default defineConfig({
   plugins: [
     vue(),
-    PurgeIcons()
+    UnoCSS(),
+    createStyleImportPlugin({
+      resolves: [ElementPlusResolve()],
+      libs: [{
+        libraryName: 'element-plus',
+        esModule: true,
+        resolveStyle: (name) => {
+          return `element-plus/es/components/${name.substring(3)}/style/css`
+        }
+      }]
+    })
   ],
+  css: {
+    preprocessorOptions: {
+      less: {
+        additionalData: '@import "./src/styles/variables.module.less";',
+        javascriptEnabled: true
+      }
+    }
+  },
   resolve: {
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.less', '.css'],
     alias: [
@@ -38,13 +59,5 @@ export default defineConfig({
       overlay: false
     },
     host: '0.0.0.0'
-  },
-  css: {
-    preprocessorOptions: {
-      less: {
-        additionalData: '@import "./src/styles/variables.module.less";',
-        javascriptEnabled: true
-      }
-    }
-  },
+  }
 })

@@ -1,8 +1,6 @@
+import { h } from 'vue'
+import type { VNode } from 'vue'
 
-import Icon from "@/components/Icon/src/Icon.vue"
-import { IconTypes } from "@/types/icon"
-import { VNode, h } from "vue"
-
-export const useIcon = (props: IconTypes): VNode => {
-    return h(Icon, props)
+export const useIcon = (unocss: String): VNode => {
+    return h('span', { class: unocss })
 }
