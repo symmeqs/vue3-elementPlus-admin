@@ -1,13 +1,14 @@
 <script lang="ts" setup>
-import Login from "./views/Login/Login.vue";
-import { useDesign } from "./hooks/web/useDesign";
+import Login from './views/Login/Login.vue'
+import { useDesign } from './hooks/web/useDesign'
 
-const { getPrefixCls } = useDesign();
+const { getPrefixCls } = useDesign()
 
-const prefixCls = getPrefixCls("app");
+const prefixCls = getPrefixCls('app')
 </script>
+
 <template>
-  <Login></Login>
+  <Login />
 </template>
 
 <style lang="less">

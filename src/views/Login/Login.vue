@@ -1,10 +1,11 @@
 <script lang="ts" setup>
-import { useDesign } from "@/hooks/web/useDesign";
-import { ThemeSwitch } from "@/components/ThemeSwitch/index";
-import LogoDesign from "./components/LogoDesign.vue";
-import LoginForm from "./components/LoginForm.vue";
+import LogoDesign from './components/LogoDesign.vue'
+import LoginForm from './components/LoginForm.vue'
+import RegisterForm from './components/RegisterForm.vue'
+import { ThemeSwitch } from '@/components/ThemeSwitch/index'
+import { useDesign } from '@/hooks/web/useDesign'
 
-const prefixCls = useDesign().getPrefixCls("login");
+const prefixCls = useDesign().getPrefixCls('login')
 </script>
 
 <template>
@@ -23,9 +24,11 @@ const prefixCls = useDesign().getPrefixCls("login");
             tag="div"
             enter-active-class="animate__animated animate__bounceInLeft"
           >
-            <img src="@/assets/svgs/login-box-bg.svg" key="1" alt="" class="w-350px" />
-            <div class="text-3xl text-white" key="2">欢迎使用 Symme Admin</div>
-            <div class="mt-5 font-normal text-white text-14px" key="3">
+            <img key="1" src="@/assets/svgs/login-box-bg.svg" alt="" class="w-350px">
+            <div key="2" class="text-3xl text-white">
+              欢迎使用 Symme Admin
+            </div>
+            <div key="3" class="mt-5 font-normal text-white text-14px">
               解决方案提供者，效率提升、流程标准化；私域流量管理、数据可视化与营销
             </div>
           </TransitionGroup>
@@ -51,6 +54,11 @@ const prefixCls = useDesign().getPrefixCls("login");
               v-if="true"
               class="p-20px h-auto m-auto lt-xl:(rounded-3xl light:bg-white)"
             />
+            <RegisterForm
+              v-else
+              class="p-20px h-auto m-auto lt-xl:(rounded-3xl light:bg-white)"
+            />
+
             <!-- <LoginForm
               v-if="true"
               class="p-20px h-auto m-auto <xl:(rounded-3xl light:bg-white)"

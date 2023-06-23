@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+
 // import './style.css'
 import App from './App.vue'
 
@@ -14,14 +15,14 @@ import '@/plugins/unocss'
 // Element Plus Components
 import { setupElementPlus } from '@/plugins/elementplus'
 
-const setupAll = async () => {
-    const app = createApp(App)
+async function setupAll() {
+  const app = createApp(App)
 
-    setupPiniaStore(app)
-    
-    setupElementPlus(app)
+  setupPiniaStore(app)
 
-    app.mount('#app')
+  setupElementPlus(app)
+
+  app.mount('#app')
 }
 
 setupAll()
