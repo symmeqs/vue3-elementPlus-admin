@@ -27,11 +27,11 @@ const registerForm = reactive({
       <ElInput v-model="registerForm.username" />
     </ElFormItem>
     <ElFormItem label="密码">
-      <InputPassword v-model="registerForm.password" />
+      <InputPassword v-model="registerForm.password" :show-strength="true" />
     </ElFormItem>
     <ElFormItem label="确认密码">
       <ElInput
-        v-model="registerForm.password"
+        v-model="registerForm.passwordConfirm"
         type="passwrodComfirm"
         show-password
       />

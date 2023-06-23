@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { ElInput } from 'element-plus'
-import { ref } from 'vue'
+import { computed, ref, unref, watch } from 'vue'
+import type { ZxcvbnResult } from '@zxcvbn-ts/core'
+import { zxcvbn } from '@zxcvbn-ts/core'
 import { getPrefixCls } from '@/hooks/web/useDesign'
 import { propTypes } from '@/utils/propTypes'
 
@@ -9,20 +11,44 @@ const props = defineProps({
   showStrength: propTypes.bool,
 })
 
+const emit = defineEmits(['update:modelValue'])
+
 const prefixCls = getPrefixCls('input-password')
 
-const getPasswordStrength = ref(0)
+const password = ref(props.modelValue)
+watch(
+  () => props.modelValue,
+  (val: string) => {
+    if (val === password.value)
+      return
+    password.value = val
+  },
+)
+
+watch(
+  () => password.value,
+  (val: string) => {
+    emit('update:modelValue', val)
+  },
+)
+
+// 更新密码强度状态
+const getPasswordStrength = computed(() => {
+  const passwordVal = unref(password)
+  const zxcvbnRef = zxcvbn(passwordVal) as ZxcvbnResult
+
+  return passwordVal ? zxcvbnRef.score : -1
+})
 </script>
 
 <template>
-  <div :class="prefixCls">
-    <ElInput type="password" show-password />
+  <div :class="prefixCls" class="w-[100%]">
+    <ElInput v-model="password" type="password" show-password />
     <div
       v-if="props.showStrength"
-      :class="`${prefixCls}__bar`"
-      class="relative h-6px mt-10px mb-6px mr-auto ml-auto"
+      :class="`${prefixCls}__bar`" class="relative h-6px mt-10px mb-6px mx-auto"
     >
-      <div :class="`${prefixCls}__bar--fill`" :data-socre="getPasswordStrength" />
+      <div :class="`${prefixCls}__bar--fill`" :data-score="getPasswordStrength" />
     </div>
   </div>
 </template>
@@ -38,9 +64,9 @@ const getPasswordStrength = ref(0)
     &::before,
     &::after {
       position: absolute;
-      z-index: 10px;
+      z-index: 10;
       display: block;
-      width: 20%;
+      width: 19%;
       height: inherit;
       background-color: transparent;
       border-color: var(--el-color-white);
@@ -50,11 +76,11 @@ const getPasswordStrength = ref(0)
     }
 
     &::before {
-      left: 20%;
+      left: 19%;
     }
 
     &::after {
-      right: 20%;
+      right: 19%;
     }
 
     &--fill {
@@ -64,32 +90,36 @@ const getPasswordStrength = ref(0)
       background-color: transparent;
       border-radius: inherit;
       transition: width 0.5s ease-in-out, background-color 0.25s;
-    }
 
-    &[data-score="0"] {
-      width: 20%;
-      background-color: var(--el-color-danger);
-    }
+      &[data-score='0'] {
+        width: 20%;
+        background-color: var(--el-color-danger);
+      }
 
-    &[data-score="1"] {
-      width: 40%;
-      background-color: var(--el-color-danger);
-    }
+      &[data-score='1'] {
+        width: 40%;
+        background-color: var(--el-color-danger);
+      }
 
-    &[data-score="2"] {
-      width: 60%;
-      background-color: var(--el-color-danger);
-    }
+      &[data-score='2'] {
+        width: 60%;
+        background-color: var(--el-color-warning);
+      }
 
-    &[data-score="3"] {
-      width: 80%;
-      background-color: var(--el-color-danger);
-    }
+      &[data-score='3'] {
+        width: 80%;
+        background-color: var(--el-color-success);
+      }
 
-    &[data-score="4"] {
-      width: 100%;
-      background-color: var(--el-color-danger);
+      &[data-score='4'] {
+        width: 100%;
+        background-color: var(--el-color-success);
+      }
     }
+  }
+
+  &--mini > &__bar {
+    border-radius: var(--el-border-radius-small);
   }
 }
 </style>

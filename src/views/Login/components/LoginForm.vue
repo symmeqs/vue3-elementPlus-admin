@@ -72,6 +72,6 @@ const remember = ref(false)
 
 <style lang="less" scoped>
 .other-login-icon {
-  @apply text-3xl cursor-pointer bg-gray hover:bg-[var(--el-color-primary)];
+  @apply text-3xl cursor-pointer bg-gray-700 hover:bg-[var(--el-color-primary)];
 }
 </style>
