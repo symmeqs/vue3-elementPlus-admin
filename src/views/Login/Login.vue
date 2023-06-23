@@ -3,9 +3,9 @@ import LogoDesign from './components/LogoDesign.vue'
 import LoginForm from './components/LoginForm.vue'
 import RegisterForm from './components/RegisterForm.vue'
 import { ThemeSwitch } from '@/components/ThemeSwitch/index'
-import { useDesign } from '@/hooks/web/useDesign'
+import { getPrefixCls } from '@/hooks/web/useDesign'
 
-const prefixCls = useDesign().getPrefixCls('login')
+const prefixCls = getPrefixCls('login')
 </script>
 
 <template>
@@ -51,7 +51,7 @@ const prefixCls = useDesign().getPrefixCls('login')
             class="h-full flex items-center m-auto w-[100%] at-2xl:max-w-500px at-xl:max-w-500px at-md:max-w-500px at-lg:max-w-500px"
           >
             <LoginForm
-              v-if="true"
+              v-if="false"
               class="p-20px h-auto m-auto lt-xl:(rounded-3xl light:bg-white)"
             />
             <RegisterForm

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ElButton, ElForm, ElFormItem, ElInput } from 'element-plus'
 import { reactive } from 'vue'
+import { InputPassword } from '@/components/InputPassword'
 
 const registerForm = reactive({
   username: '',
@@ -26,7 +27,7 @@ const registerForm = reactive({
       <ElInput v-model="registerForm.username" />
     </ElFormItem>
     <ElFormItem label="密码">
-      <ElInput v-model="registerForm.password" type="passwrod" show-password />
+      <InputPassword v-model="registerForm.password" />
     </ElFormItem>
     <ElFormItem label="确认密码">
       <ElInput

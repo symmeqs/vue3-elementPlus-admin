@@ -1,18 +1,17 @@
 import variables from '@/styles/variables.module.less'
 
-export const useDesign = () => {
+/**
+ * @param scope 类名
+ * @returns 返回空间名-类名
+ */
+export function getPrefixCls(scope: string) {
   const lessVariables = variables
+  return `${lessVariables.namespace}-${scope}`
+}
 
-  /**
-   * @param scope 类名
-   * @returns 返回空间名-类名
-   */
-  const getPrefixCls = (scope: string) => {
-    return `${lessVariables.namespace}-${scope}`
-  }
-
+export function useDesign() {
   return {
-    variables: lessVariables,
-    getPrefixCls
+    variables,
+    getPrefixCls,
   }
 }

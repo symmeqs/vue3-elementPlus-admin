@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import Login from './views/Login/Login.vue'
-import { useDesign } from './hooks/web/useDesign'
-
-const { getPrefixCls } = useDesign()
+import { getPrefixCls } from './hooks/web/useDesign'
 
 const prefixCls = getPrefixCls('app')
 </script>
