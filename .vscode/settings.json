@@ -1,8 +1,13 @@
 {
+  // @antfu/eslint-config
   "prettier.enable": false,
   "editor.formatOnSave": false,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
     "source.organizeImports": false
-  }
+  },
+  // sytlelist, disable VScode`s css validate built-in.
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false
 }
