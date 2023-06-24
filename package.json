@@ -17,6 +17,7 @@
     "less-loader": "5",
     "pinia": "^2.1.4",
     "vue": "^3.2.47",
+    "vue-router": "4",
     "vue-types": "^5.0.3"
   },
   "devDependencies": {

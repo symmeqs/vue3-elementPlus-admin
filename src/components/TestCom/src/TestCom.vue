@@ -1,8 +1,6 @@
 <script lang="ts" setup>
-import { propTypes } from '@/utils/propTypes.ts'
-
 const props = defineProps({
-  name: propTypes.string,
+  name: String,
 })
 </script>
 

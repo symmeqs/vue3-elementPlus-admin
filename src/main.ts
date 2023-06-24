@@ -12,6 +12,8 @@ import { setupPiniaStore } from './store'
 // UnoCSS
 import '@/plugins/unocss'
 
+import { setupRouter } from './router'
+
 // Element Plus Components
 import { setupElementPlus } from '@/plugins/elementplus'
 
@@ -19,6 +21,8 @@ async function setupAll() {
   const app = createApp(App)
 
   setupPiniaStore(app)
+
+  setupRouter(app)
 
   setupElementPlus(app)
 

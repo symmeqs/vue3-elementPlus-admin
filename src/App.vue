@@ -1,12 +1,17 @@
 <script lang="ts" setup>
-import Login from './views/Login/Login.vue'
+import { ref } from 'vue'
 import { getPrefixCls } from './hooks/web/useDesign'
+import { ConfigGlobal } from './components/ConfigGlobal'
 
 const prefixCls = getPrefixCls('app')
+
+const greyMode = ref(false) // TODO App Store
 </script>
 
 <template>
-  <Login />
+  <ConfigGlobal>
+    <router-view :class="greyMode ? `${prefixCls}-grey-mode` : ''" />
+  </ConfigGlobal>
 </template>
 
 <style lang="less">

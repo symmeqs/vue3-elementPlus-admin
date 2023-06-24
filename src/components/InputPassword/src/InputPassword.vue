@@ -4,11 +4,10 @@ import { computed, ref, unref, watch } from 'vue'
 import type { ZxcvbnResult } from '@zxcvbn-ts/core'
 import { zxcvbn } from '@zxcvbn-ts/core'
 import { getPrefixCls } from '@/hooks/web/useDesign'
-import { propTypes } from '@/utils/propTypes'
 
 const props = defineProps({
-  modelValue: propTypes.string,
-  showStrength: propTypes.bool,
+  modelValue: String,
+  showStrength: Boolean,
 })
 
 const emit = defineEmits(['update:modelValue'])
@@ -36,9 +35,11 @@ watch(
 // 更新密码强度状态
 const getPasswordStrength = computed(() => {
   const passwordVal = unref(password)
-  const zxcvbnRef = zxcvbn(passwordVal) as ZxcvbnResult
+  if (!passwordVal)
+    return -1
 
-  return passwordVal ? zxcvbnRef.score : -1
+  const zxcvbnRef = zxcvbn(passwordVal) as ZxcvbnResult
+  return zxcvbnRef.score
 })
 </script>
 

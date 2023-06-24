@@ -3,12 +3,18 @@ import { ElButton, ElForm, ElFormItem, ElInput } from 'element-plus'
 import { reactive } from 'vue'
 import { InputPassword } from '@/components/InputPassword'
 
+const emit = defineEmits(['toLogin'])
+
 const registerForm = reactive({
   username: '',
   password: '',
   passwordConfirm: '',
   code: '',
 })
+
+function toLogin() {
+  emit('toLogin')
+}
 </script>
 
 <template>
@@ -32,7 +38,7 @@ const registerForm = reactive({
     <ElFormItem label="确认密码">
       <ElInput
         v-model="registerForm.passwordConfirm"
-        type="passwrodComfirm"
+        type="password"
         show-password
       />
     </ElFormItem>
@@ -45,7 +51,7 @@ const registerForm = reactive({
       </ElButton>
     </ElFormItem>
     <ElFormItem>
-      <ElButton class="w-[100%]">
+      <ElButton class="w-[100%]" @click="toLogin">
         已有账号？去登录
       </ElButton>
     </ElFormItem>

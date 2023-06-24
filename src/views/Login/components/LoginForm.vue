@@ -9,13 +9,25 @@ import {
   ElInput,
   ElLink,
 } from 'element-plus'
+import { useRouter } from 'vue-router'
 
+const emit = defineEmits(['toRegister'])
+const { push } = useRouter()
 const loginForm = reactive({
   username: 'admin',
   password: '123456',
 })
 
 const remember = ref(false)
+
+function toRegister() {
+  emit('toRegister')
+}
+
+async function signIn() {
+  // TODO 校验表单
+  push({ path: '/' })
+}
 </script>
 
 <template>
@@ -45,12 +57,12 @@ const remember = ref(false)
       </div>
     </ElFormItem>
     <ElFormItem>
-      <ElButton type="primary" class="w-[100%]">
+      <ElButton type="primary" class="w-[100%]" @click="signIn">
         登录
       </ElButton>
     </ElFormItem>
     <ElFormItem>
-      <ElButton class="w-[100%]">
+      <ElButton class="w-[100%]" @click="toRegister">
         注册
       </ElButton>
     </ElFormItem>

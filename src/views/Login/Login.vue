@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { ref } from 'vue'
 import LogoDesign from './components/LogoDesign.vue'
 import LoginForm from './components/LoginForm.vue'
 import RegisterForm from './components/RegisterForm.vue'
@@ -6,6 +7,16 @@ import { ThemeSwitch } from '@/components/ThemeSwitch/index'
 import { getPrefixCls } from '@/hooks/web/useDesign'
 
 const prefixCls = getPrefixCls('login')
+
+const isLogin = ref(true)
+
+function toLogin() {
+  isLogin.value = true
+}
+
+function toRegister() {
+  isLogin.value = false
+}
 </script>
 
 <template>
@@ -51,24 +62,15 @@ const prefixCls = getPrefixCls('login')
             class="h-full flex items-center m-auto w-[100%] at-2xl:max-w-500px at-xl:max-w-500px at-md:max-w-500px at-lg:max-w-500px"
           >
             <LoginForm
-              v-if="false"
+              v-if="isLogin"
               class="p-20px h-auto m-auto lt-xl:(rounded-3xl light:bg-white)"
-            />
-            <RegisterForm
-              v-else
-              class="p-20px h-auto m-auto lt-xl:(rounded-3xl light:bg-white)"
-            />
-
-            <!-- <LoginForm
-              v-if="true"
-              class="p-20px h-auto m-auto <xl:(rounded-3xl light:bg-white)"
               @to-register="toRegister"
             />
             <RegisterForm
               v-else
-              class="p-20px h-auto m-auto <xl:(rounded-3xl light:bg-white)"
+              class="p-20px h-auto m-auto lt-xl:(rounded-3xl light:bg-white)"
               @to-login="toLogin"
-            /> -->
+            />
           </div>
         </Transition>
       </div>
