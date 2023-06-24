@@ -12,6 +12,7 @@ export default defineConfig({
   theme: {
     colors: {
       'v-dark': 'var(--dark-bg-color)',
+      'v-darkBule': 'var(--left-menu-bg-color)',
     },
   },
 })

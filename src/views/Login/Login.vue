@@ -30,10 +30,15 @@ function toRegister() {
           <LogoDesign />
         </div>
         <div class="flex justify-center items-center h-[calc(100%-60px)]">
-          <TransitionGroup
+          <!-- <TransitionGroup
             appear
             tag="div"
             enter-active-class="animate__animated animate__bounceInLeft"
+          >
+           -->
+          <TransitionGroup
+            appear
+            tag="div"
           >
             <img key="1" src="@/assets/svgs/login-box-bg.svg" alt="" class="w-350px">
             <div key="2" class="text-3xl text-white">
@@ -57,7 +62,8 @@ function toRegister() {
             <ThemeSwitch />
           </div>
         </div>
-        <Transition appear enter-active-class="animate__animated animate__bounceInRight">
+        <!-- <Transition appear enter-active-class="animate__animated animate__bounceInRight"> -->
+        <Transition appear>
           <div
             class="h-full flex items-center m-auto w-[100%] at-2xl:max-w-500px at-xl:max-w-500px at-md:max-w-500px at-lg:max-w-500px"
           >
