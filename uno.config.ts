@@ -1,5 +1,4 @@
-import { defineConfig } from 'unocss'
-import { presetUno, presetIcons, transformerVariantGroup, transformerDirectives } from 'unocss'
+import { defineConfig, presetIcons, presetUno, transformerDirectives, transformerVariantGroup } from 'unocss'
 
 export default defineConfig({
   presets: [
@@ -9,11 +8,11 @@ export default defineConfig({
   ],
   transformers: [
     transformerVariantGroup(),
-    transformerDirectives()
+    transformerDirectives(),
   ],
   theme: {
     colors: {
-      'v-dark': 'var(--dark-bg-color)'
-    }
-  }
+      'v-dark': 'var(--dark-bg-color)',
+    },
+  },
 })

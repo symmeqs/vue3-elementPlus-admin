@@ -1,7 +1,7 @@
+import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { resolve } from 'path'
-import { createStyleImportPlugin, ElementPlusResolve } from 'vite-plugin-style-import'
+import { ElementPlusResolve, createStyleImportPlugin } from 'vite-plugin-style-import'
 
 // Uno CSS
 import UnoCSS from 'unocss/vite'
@@ -24,26 +24,26 @@ export default defineConfig({
         esModule: true,
         resolveStyle: (name) => {
           return `element-plus/es/components/${name.substring(3)}/style/css`
-        }
-      }]
-    })
+        },
+      }],
+    }),
   ],
   css: {
     preprocessorOptions: {
       less: {
         additionalData: '@import "./src/styles/variables.module.less";',
-        javascriptEnabled: true
-      }
-    }
+        javascriptEnabled: true,
+      },
+    },
   },
   resolve: {
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.less', '.css'],
     alias: [
       {
         find: /\@\//,
-        replacement: `${pathResolve('src')}/`
-      }
-    ]
+        replacement: `${pathResolve('src')}/`,
+      },
+    ],
   },
   server: {
     port: 4000,
@@ -53,11 +53,11 @@ export default defineConfig({
         target: 'http://localhost:8090',
         changeOrigin: true,
         // rewrite: path => path.replace(/^\/api/, '')
-      }
+      },
     },
     hmr: {
-      overlay: false
+      overlay: false,
     },
-    host: '0.0.0.0'
-  }
+    host: '0.0.0.0',
+  },
 })

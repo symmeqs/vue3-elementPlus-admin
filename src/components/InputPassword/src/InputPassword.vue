@@ -16,6 +16,7 @@ const emit = defineEmits(['update:modelValue'])
 const prefixCls = getPrefixCls('input-password')
 
 const password = ref(props.modelValue)
+
 watch(
   () => props.modelValue,
   (val: string) => {
