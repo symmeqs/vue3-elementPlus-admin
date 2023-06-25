@@ -7,15 +7,19 @@ import Layout from '@/layout/Layout.vue'
 const routes = [
   {
     path: '/',
-    component: Home,
+    component: Layout,
+    redirect: '/dashboard/home',
+    name: 'Root',
+    children: [
+      {
+        path: '/dashboard/home',
+        component: Home,
+      },
+    ],
   },
   {
     path: '/login',
     component: Login,
-  },
-  {
-    path: '/layout',
-    component: Layout,
   },
 ]
 

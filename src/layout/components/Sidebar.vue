@@ -1,30 +1,28 @@
 <script lang="ts" setup>
 import { ElMenu, ElMenuItem, ElMenuItemGroup } from 'element-plus'
-import { ref } from 'vue'
+import { type StyleValue, computed } from 'vue'
+import { useAppStore } from '@/store/modules/app'
 
-const isCollapse = ref(true)
-function handleOpen() {
-//   console.log('12')
-}
+const appStore = useAppStore()
+const isCollapse = computed(() => appStore.layoutBreadCrumbIsCollapse)
 
-function handleClose() {
-//   console.log('12')
-}
+const layoutHeaderHeight = appStore.layoutHeaderHeight
+const logoHeightStyleValue = { height: layoutHeaderHeight } as StyleValue
 </script>
 
 <template>
-  <div v-show="false" class="bg-white h-full w-[180px]">
-    <div class="h-55px text-center border-b-solid border-b-gray-1">
-      <div class="font-bold text-lg pt-3">
+  <div v-show="!isCollapse" class="bg-white h-full w-[200px]">
+    <div
+      :style="logoHeightStyleValue"
+      class="text-center border-b-solid border-b-gray-1 border-r-solid border-r-gray-1"
+    >
+      <div class="font-bold text-lg pt-3 text-gray-600">
         Symme Admin
       </div>
     </div>
 
     <ElMenu
       default-active="2"
-      class="el-menu-vertical-demo"
-      @open="handleOpen"
-      @close="handleClose"
     >
       <ElMenuItem index="3">
         <span class="i-ant-design-dashboard-filled mr-2" />

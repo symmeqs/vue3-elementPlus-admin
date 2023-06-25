@@ -5,5 +5,16 @@ export const useAppStore = defineStore('app', () => {
   const isDark = ref<boolean>(false)
   const setIsDark = (isDarkVal: boolean) => isDark.value = isDarkVal
 
-  return { isDark, setIsDark }
+  const layoutHeaderHeight = ref<String>('55px')
+
+  const layoutBreadCrumbIsCollapse = ref<boolean>(false)
+  const setLayoutBreadCrumbIsCollapse = (isCollapse: boolean) => layoutBreadCrumbIsCollapse.value = isCollapse
+
+  return {
+    isDark,
+    setIsDark,
+    layoutHeaderHeight,
+    layoutBreadCrumbIsCollapse,
+    setLayoutBreadCrumbIsCollapse,
+  }
 })
