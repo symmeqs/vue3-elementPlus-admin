@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { StyleValue } from 'vue'
 import { reactive } from 'vue'
-import Logo from './Logo.vue'
+import LogoBar from './LogoBar.vue'
 import { useAppStore } from '@/store/modules/app'
 
 const layoutHeaderHeight = useAppStore().layoutHeaderHeight
@@ -34,7 +34,7 @@ const mockMenuList = reactive([
 <template>
   <div class="w-65px h-full bg-v-darkBule text-gray-1">
     <div :style="logoHeightStyleValue">
-      <Logo />
+      <LogoBar />
     </div>
     <div class="relative h-full">
       <div class="w-full">
@@ -50,7 +50,7 @@ const mockMenuList = reactive([
       </div>
 
       <div class="absolute bottom-20 w-full">
-        <Logo />
+        <LogoBar />
       </div>
     </div>
   </div>
