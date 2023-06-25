@@ -18,13 +18,16 @@ function toggleIsCollapse() {
 </script>
 
 <template>
-  <div :style="logoHeightStyleValue" class="flex justify-between w-full bg-white">
+  <div
+    :style="logoHeightStyleValue"
+    class="flex justify-between w-full bg-white border-l-solid border-l-gray-100"
+  >
     <div class="flex items-center">
-      <div class="w-55px">
+      <div class="w-[55px]">
         <div v-if="isCollapse" class="i-ep-expand nav-collapse" @click="toggleIsCollapse" />
         <div v-else class="i-ep-fold nav-collapse" @click="toggleIsCollapse" />
       </div>
-      <div class="w-100px text-sm text-gray-500">
+      <div class="w-[100px] text-sm text-gray-500">
         首页  /  分析页
       </div>
     </div>

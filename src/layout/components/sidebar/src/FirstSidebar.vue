@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { StyleValue } from 'vue'
 import { reactive } from 'vue'
+import { ElMenu, ElMenuItem } from 'element-plus'
 import LogoBar from './LogoBar.vue'
 import { useMenuStore } from '@/layout/store/menu'
 import { useAppStore } from '@/store/modules/app'
@@ -48,18 +49,22 @@ function renderSecondMenu(index: string) {
     </div>
     <div class="relative h-full">
       <div class="w-full">
-        <div
-          v-for="(item, index) in mockMenuList" :key="item.name"
-          class="h-50px pt-2 focus:bg-blue-4 hover:bg-gray-8"
-          :tabindex="index"
-
-          @click="renderSecondMenu(item.path)"
-        >
-          <div :class="item.icon" class="text-xl mx-auto" />
-          <div class="text-center text-gray-4">
-            <span class="text-1">{{ item.name }}</span>
-          </div>
-        </div>
+        <ElMenu class="!bg-transparent !border-r-hidden">
+          <ElMenuItem
+            v-for="item in mockMenuList"
+            :key="item.path"
+            :index="item.path"
+            class="!px-0 !hover:bg-blue"
+            @click="renderSecondMenu(item.path)"
+          >
+            <div class="line-height-none !pl-0 mx-auto">
+              <div :class="item.icon" class="text-lg mx-auto text-white" />
+              <div class="text-gray-3 pt-[6px]">
+                <span class="text-1">{{ item.name }}</span>
+              </div>
+            </div>
+          </ElMenuItem>
+        </ElMenu>
       </div>
 
       <div class="absolute bottom-20 w-full">
