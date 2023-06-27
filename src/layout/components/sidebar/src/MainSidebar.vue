@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import type { StyleValue } from 'vue'
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import { ElMenu, ElMenuItem } from 'element-plus'
+import { useRoute } from 'vue-router'
 import LogoBar from './LogoBar.vue'
-import { useMenuStore } from '@/layout/store/menu'
 import { useAppStore } from '@/store/modules/app'
+import { useMenuStore } from '@/layout/store/menu'
 
 const layoutHeaderHeight = useAppStore().layoutHeaderHeight
 const logoHeightStyleValue = { height: layoutHeaderHeight } as StyleValue
@@ -27,7 +28,7 @@ const mockMenuList = reactive([
   },
   {
     icon: 'i-heroicons-cog-6-tooth-solid',
-    path: 'setting',
+    path: 'settings',
     name: '设置',
   },
   {
@@ -37,9 +38,18 @@ const mockMenuList = reactive([
   },
 ])
 
-function renderSecondMenu(index: string) {
+const route = useRoute()
+
+// 从路由中获取当前选中的菜单
+const currentMenuPath = route.path.match(/^\/.+\//)?.[0].replaceAll(/\//g, '') || ''
+const currentMenuItemPath = ref(currentMenuPath)
+
+function renderSubMenu(index: string) {
+  currentMenuItemPath.value = index
   useMenuStore().setMenuPath(index)
 }
+
+renderSubMenu(currentMenuItemPath.value)
 </script>
 
 <template>
@@ -49,17 +59,18 @@ function renderSecondMenu(index: string) {
     </div>
     <div class="relative h-full">
       <div class="w-full">
-        <ElMenu class="!bg-transparent !border-r-hidden">
+        <ElMenu class="!border-r-hidden" background-color="transparent" text-color="#d1d3d9">
           <ElMenuItem
             v-for="item in mockMenuList"
             :key="item.path"
             :index="item.path"
             class="!px-0 !hover:bg-blue"
-            @click="renderSecondMenu(item.path)"
+            :class="{ 'emnu-item-bg': item.path === currentMenuItemPath }"
+            @click="renderSubMenu(item.path)"
           >
             <div class="line-height-none !pl-0 mx-auto">
-              <div :class="item.icon" class="text-lg mx-auto text-white" />
-              <div class="text-gray-3 pt-[6px]">
+              <div :class="item.icon" class="text-lg mx-auto" />
+              <div class="pt-[6px]">
                 <span class="text-1">{{ item.name }}</span>
               </div>
             </div>
@@ -73,3 +84,9 @@ function renderSecondMenu(index: string) {
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.emnu-item-bg {
+    @apply bg-blue-500 text-white
+}
+</style>

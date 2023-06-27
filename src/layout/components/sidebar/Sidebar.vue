@@ -1,17 +1,11 @@
 <script lang="ts" setup>
-import FirstSidebar from './src/FirstSidebar.vue'
-
-// import FixedSidebar from './src/FixedSidebar.vue'
-// import SecondSidebar from './src/SecondSidebar.vue'
-
-// import TabSidebar from './src/TabSidebar.vue'
+import MainSidebar from './src/MainSidebar.vue'
+import SubSidebar from './src/SubSidebar.vue'
 </script>
 
 <template>
   <div class="flex">
-    <!-- <TabSidebar /> -->
-    <FirstSidebar />
-    <!-- <FixedSidebar /> -->
-    <!-- <SecondSidebar /> -->
+    <MainSidebar />
+    <SubSidebar />
   </div>
 </template>

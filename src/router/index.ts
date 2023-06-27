@@ -5,21 +5,26 @@ import Home from '@/views/Home/Home.vue'
 import Layout from '@/layout/Layout.vue'
 import Error404 from '@/views/ErrorPage/Error404.vue'
 import Workspace from '@/views/Dashboard/Workspace.vue'
+import IconRepo from '@/views/IconRepo/Index.vue'
 
 const routes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard/home',
+    redirect: '/home/worksapce',
     name: 'Root',
     children: [
       {
-        path: '/dashboard/home',
+        path: '/home/analysis',
         component: Home,
       },
       {
-        path: '/dashboard/worksapce',
+        path: '/home/worksapce',
         component: Workspace,
+      },
+      {
+        path: '/settings/icons',
+        component: IconRepo,
       },
       {
         path: '/404',
