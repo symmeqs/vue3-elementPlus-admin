@@ -46,7 +46,9 @@ const currentMenuItemPath = ref(currentMenuPath)
 
 function renderSubMenu(index: string) {
   currentMenuItemPath.value = index
-  useMenuStore().setMenuPath(index)
+  const menuStore = useMenuStore()
+  menuStore.setMenuPath(index)
+  menuStore.setLayoutSubMenuIsCollapse(false) // 点击主菜单后，次菜单展开
 }
 
 renderSubMenu(currentMenuItemPath.value)

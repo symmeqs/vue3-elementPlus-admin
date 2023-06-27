@@ -6,11 +6,11 @@ import { useRoute } from 'vue-router'
 import { useAppStore } from '@/store/modules/app'
 import { useMenuStore } from '@/layout/store/menu'
 
+const menuStrore = useMenuStore()
+const menuPath = computed(() => menuStrore.menuPath)
+const isCollapse = computed(() => menuStrore.layoutSubMenuIsCollapse)
+
 const appStore = useAppStore()
-const isCollapse = computed(() => appStore.layoutBreadCrumbIsCollapse)
-
-const menuPath = computed(() => useMenuStore().menuPath)
-
 const layoutHeaderHeight = appStore.layoutHeaderHeight
 const logoHeightStyleValue = { height: layoutHeaderHeight } as StyleValue
 

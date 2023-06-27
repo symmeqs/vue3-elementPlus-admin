@@ -2,18 +2,19 @@
 import type { StyleValue } from 'vue'
 import { computed } from 'vue'
 import { useAppStore } from '@/store/modules/app'
+
+import { useMenuStore } from '@/layout/store/menu'
 import { ThemeSwitch } from '@/components/ThemeSwitch'
 import { UserInfo } from '@/components/UserInfo'
 import { Bell } from '@/components/Bell'
 
-const appStore = useAppStore()
-const isCollapse = computed(() => appStore.layoutBreadCrumbIsCollapse)
-
-const layoutHeaderHeight = appStore.layoutHeaderHeight
+const layoutHeaderHeight = useAppStore().layoutHeaderHeight
 const logoHeightStyleValue = { height: layoutHeaderHeight } as StyleValue
 
+const menuStore = useMenuStore()
+const isCollapse = computed(() => menuStore.layoutSubMenuIsCollapse)
 function toggleIsCollapse() {
-  appStore.setLayoutBreadCrumbIsCollapse(!isCollapse.value)
+  menuStore.setLayoutSubMenuIsCollapse(!isCollapse.value)
 }
 </script>
 
