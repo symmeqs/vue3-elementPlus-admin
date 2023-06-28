@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import Sidebar from './components/sidebar/Sidebar.vue'
-import HeaderToolBar from './components/HeaderToolBar.vue'
+import { Sidebar } from './components/Sidebar'
+import { HeaderToolBar } from './components/HeaderToolBar'
 </script>
 
 <template>
@@ -14,3 +14,4 @@ import HeaderToolBar from './components/HeaderToolBar.vue'
     </div>
   </div>
 </template>
+./components/Sidebar/Sidebar.vue./components/HeaderToolbar/HeaderToolBar.vue

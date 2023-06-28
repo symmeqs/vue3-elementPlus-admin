@@ -3,7 +3,7 @@ import type { StyleValue } from 'vue'
 import { reactive, ref } from 'vue'
 import { ElMenu, ElMenuItem } from 'element-plus'
 import { useRoute } from 'vue-router'
-import LogoBar from './LogoBar.vue'
+import { LogoBar } from '@/layout/components/Logo'
 import { useAppStore } from '@/store/modules/app'
 import { useMenuStore } from '@/layout/store/menu'
 

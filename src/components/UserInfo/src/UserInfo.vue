@@ -4,6 +4,10 @@ import { ElDropdown, ElDropdownItem, ElDropdownMenu } from 'element-plus'
 function toDocument() {
   window.open('https://github.com/symmeqs/vue3-elementPlus-admin')
 }
+
+function loginOut() {
+  // TODO
+}
 </script>
 
 <template>

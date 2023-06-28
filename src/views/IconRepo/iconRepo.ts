@@ -28,18 +28,22 @@ export const iconList = [
     name: 'crescent-moon',
   }, {
     icon: 'i-ep-expand',
-    name: 'dashboard',
+    name: 'expand',
   },
   {
     icon: 'i-ep-fold',
-    name: 'document',
+    name: 'fold',
   },
   {
-    icon: 'i-ep-full-screen',
-    name: 'telegram-plane',
+    icon: 'i-zmdi-fullscreen',
+    name: 'fullscreen',
+  },
+  {
+    icon: 'i-zmdi-fullscreen-exit',
+    name: 'fullscreen-exit',
   },
   {
     icon: 'i-ep-bell',
-    name: 'cog-6-tooth',
+    name: 'bell',
   },
 ]

@@ -7,6 +7,7 @@ import { useMenuStore } from '@/layout/store/menu'
 import { ThemeSwitch } from '@/components/ThemeSwitch'
 import { UserInfo } from '@/components/UserInfo'
 import { Bell } from '@/components/Bell'
+import { FullScreen } from '@/components/FullScreen'
 
 const layoutHeaderHeight = useAppStore().layoutHeaderHeight
 const logoHeightStyleValue = { height: layoutHeaderHeight } as StyleValue
@@ -25,24 +26,21 @@ function toggleIsCollapse() {
   >
     <div class="flex items-center">
       <div class="w-[55px]">
-        <div v-if="isCollapse" class="i-ep-expand nav-collapse" @click="toggleIsCollapse" />
-        <div v-else class="i-ep-fold nav-collapse" @click="toggleIsCollapse" />
+        <div
+          :class="isCollapse ? 'i-ep-expand' : 'i-ep-fold'"
+          class="mx-auto text-xl text-gray-500 hover:bg-blue-500"
+          @click="toggleIsCollapse"
+        />
       </div>
       <div class="w-[100px] text-sm text-gray-500">
         首页  /  分析页
       </div>
     </div>
-    <div class="flex mr-5 gap-5 items-center">
+    <div class="flex mr-5 gap-5 items-center text-gray-600">
       <ThemeSwitch />
-      <div class="i-ep-full-screen hover:(bg-blue-500 cursor-pointer) border-solid" />
+      <FullScreen />
       <Bell />
       <UserInfo />
     </div>
   </div>
 </template>
-
-<style lang="less" scoped>
-.nav-collapse {
-    @apply mx-auto text-xl text-gray-500 hover:bg-blue-500;
-}
-</style>

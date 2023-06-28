@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import MainSidebar from './src/MainSidebar.vue'
-import SubSidebar from './src/SubSidebar.vue'
+import MainSidebar from './MainSidebar.vue'
+import SubSidebar from './SubSidebar.vue'
 </script>
 
 <template>
