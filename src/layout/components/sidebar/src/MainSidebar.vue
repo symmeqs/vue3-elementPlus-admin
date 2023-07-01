@@ -89,6 +89,6 @@ renderSubMenu(currentMenuItemPath.value)
 
 <style lang="scss" scoped>
 .emnu-item-bg {
-    @apply bg-blue-500 text-white
+    @apply bg-blue-500 text-white;
 }
 </style>

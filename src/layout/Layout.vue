@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { ElScrollbar } from 'element-plus'
 import { Sidebar } from './components/Sidebar'
 import { HeaderToolBar } from './components/HeaderToolBar'
 </script>
@@ -8,10 +9,9 @@ import { HeaderToolBar } from './components/HeaderToolBar'
     <Sidebar />
     <div class="w-full">
       <HeaderToolBar />
-      <div class="w-full h-full m-2 bg-inherit">
+      <ElScrollbar class="w-full h-full m-2 bg-inherit bg-white">
         <RouterView />
-      </div>
+      </ElScrollbar>
     </div>
   </div>
 </template>
-./components/Sidebar/Sidebar.vue./components/HeaderToolbar/HeaderToolBar.vue

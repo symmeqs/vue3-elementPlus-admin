@@ -1,8 +1,17 @@
 <script lang="ts" setup>
+import { ElMessage } from 'element-plus'
+import { useClipboard } from '@vueuse/core'
 import { iconList } from './iconRepo'
 
 // todo remove
-iconList.push(...iconList)
+iconList.push(...iconList, ...iconList, ...iconList, ...iconList)
+
+const { copy } = useClipboard()
+
+function copyIcon(icon: string) {
+  copy(icon)
+  ElMessage.success(`Copyed!${icon}`)
+}
 </script>
 
 <template>
@@ -16,6 +25,7 @@ iconList.push(...iconList)
           v-for="item in iconList" :key="item.icon"
           class="h-120px flex items-center hover:(bg-gray-1 cursor-pointer)
                 border-r-solid border-b-solid border-1 border-gray-300"
+          @click="copyIcon(item.icon)"
         >
           <div class="mx-auto overflow-hidden">
             <div :class="item.icon" class="w-26px h-26px mx-auto" />
