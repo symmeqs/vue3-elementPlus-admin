@@ -4,7 +4,7 @@ import { useClipboard } from '@vueuse/core'
 import { iconList } from './iconRepo'
 
 // todo remove
-iconList.push(...iconList, ...iconList, ...iconList, ...iconList)
+iconList.push(...iconList, ...iconList, ...iconList, ...iconList, ...iconList, ...iconList)
 
 const { copy } = useClipboard()
 
@@ -15,10 +15,10 @@ function copyIcon(icon: string) {
 </script>
 
 <template>
-  <div class="bg-white w-full h-full rounded-tl-md p-5">
+  <div class="bg-white h-full p-3 rounded-md">
     <div>
       <div
-        class="w-[80%] grid grid-cols-3 lg-md:grid-cols-10 overflow-hidden
+        class="w-[100%] grid grid-cols-3 lg-md:grid-cols-12 overflow-hidden
               border-t-solid border-l-solid border-1 border-gray-300 rounded-md text-gray-500"
       >
         <div

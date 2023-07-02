@@ -1,17 +1,35 @@
 <script lang="ts" setup>
-import { ElScrollbar } from 'element-plus'
-import { Sidebar } from './components/Sidebar'
-import { HeaderToolBar } from './components/HeaderToolBar'
+import { ElContainer } from 'element-plus'
+import { AppView, HeaderToolBar, Sidebar } from './components'
+
+// const prefixCls = getPrefixCls('layout')
 </script>
 
 <template>
-  <div class="flex h-full bg-gray-1">
+  <!-- <div :class="`${prefixCls}-layout`" class="flex h-full bg-gray-1">
     <Sidebar />
     <div class="w-full">
       <HeaderToolBar />
-      <ElScrollbar class="w-full h-full m-2 bg-inherit bg-white">
-        <RouterView />
+      <ElScrollbar class="h-full m-2 bg-inherit">
+        <AppView />
       </ElScrollbar>
     </div>
-  </div>
+  </div> -->
+
+  <ElContainer class="h-full bg-gray-1">
+    <Sidebar />
+
+    <ElContainer class="!block">
+      <HeaderToolBar />
+      <AppView />
+    </ElContainer>
+  </ElContainer>
 </template>
+
+<style lang="scss" scoped>
+// @prefix-cls: ~'@{namespace}-layout';
+
+// /deep/ .el_scrollbar__view {
+//   height: 100% !important;
+// }
+</style>

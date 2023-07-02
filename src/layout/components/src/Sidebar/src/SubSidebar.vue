@@ -1,18 +1,13 @@
 <script lang="ts" setup>
 import { ElMenu, ElMenuItem } from 'element-plus'
 import { computed, ref, watch } from 'vue'
-import type { Ref, StyleValue } from 'vue'
+import type { Ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { useAppStore } from '@/store/modules/app'
 import { useMenuStore } from '@/layout/store/menu'
 
 const menuStrore = useMenuStore()
 const menuPath = computed(() => menuStrore.menuPath)
 const isCollapse = computed(() => menuStrore.layoutSubMenuIsCollapse)
-
-const appStore = useAppStore()
-const layoutHeaderHeight = appStore.layoutHeaderHeight
-const logoHeightStyleValue = { height: layoutHeaderHeight } as StyleValue
 
 interface MenuItemType {
   routePath: string
@@ -69,8 +64,7 @@ watch(
 <template>
   <div v-show="!isCollapse" class="bg-white h-full w-[200px]">
     <div
-      :style="logoHeightStyleValue"
-      class="text-center border-b-solid border-b-gray-1"
+      class="text-center border-b-solid border-b-gray-1 h-[var(--layout-header-height)]"
     >
       <div class="fw500 text-lg pt-3 text-gray-600">
         Symme Admin

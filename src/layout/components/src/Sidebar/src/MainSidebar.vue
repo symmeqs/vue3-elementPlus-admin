@@ -1,14 +1,9 @@
 <script lang="ts" setup>
-import type { StyleValue } from 'vue'
 import { reactive, ref } from 'vue'
 import { ElMenu, ElMenuItem } from 'element-plus'
 import { useRoute } from 'vue-router'
-import { LogoBar } from '@/layout/components/Logo'
-import { useAppStore } from '@/store/modules/app'
+import LogoBar from './LogoBar.vue'
 import { useMenuStore } from '@/layout/store/menu'
-
-const layoutHeaderHeight = useAppStore().layoutHeaderHeight
-const logoHeightStyleValue = { height: layoutHeaderHeight } as StyleValue
 
 const mockMenuList = reactive([
   {
@@ -56,7 +51,7 @@ renderSubMenu(currentMenuItemPath.value)
 
 <template>
   <div class="w-65px h-full bg-v-darkBule text-gray-1">
-    <div :style="logoHeightStyleValue">
+    <div class="h-[var(--layout-header-height)]">
       <LogoBar />
     </div>
     <div class="relative h-full">

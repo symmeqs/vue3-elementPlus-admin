@@ -1,16 +1,12 @@
 <script lang="ts" setup>
-import type { StyleValue } from 'vue'
 import { computed } from 'vue'
-import { useAppStore } from '@/store/modules/app'
+import { ElHeader } from 'element-plus'
+import UserInfo from './UserInfo.vue'
+import FullScreen from './FullScreen.vue'
+import Bell from './Bell.vue'
 
 import { useMenuStore } from '@/layout/store/menu'
 import { ThemeSwitch } from '@/components/ThemeSwitch'
-import { UserInfo } from '@/components/UserInfo'
-import { Bell } from '@/components/Bell'
-import { FullScreen } from '@/components/FullScreen'
-
-const layoutHeaderHeight = useAppStore().layoutHeaderHeight
-const logoHeightStyleValue = { height: layoutHeaderHeight } as StyleValue
 
 const menuStore = useMenuStore()
 const isCollapse = computed(() => menuStore.layoutSubMenuIsCollapse)
@@ -20,15 +16,14 @@ function toggleIsCollapse() {
 </script>
 
 <template>
-  <div
-    :style="logoHeightStyleValue"
+  <ElHeader
     class="flex justify-between w-full bg-white border-l-solid border-l-gray-100"
   >
     <div class="flex items-center">
-      <div class="w-[55px]">
+      <div class="w-[35px]">
         <div
           :class="isCollapse ? 'i-ep-expand' : 'i-ep-fold'"
-          class="mx-auto text-xl text-gray-500 hover:bg-blue-500"
+          class="text-xl text-gray-500 hover:bg-blue-500"
           @click="toggleIsCollapse"
         />
       </div>
@@ -42,5 +37,5 @@ function toggleIsCollapse() {
       <Bell />
       <UserInfo />
     </div>
-  </div>
+  </ElHeader>
 </template>
