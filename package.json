@@ -27,6 +27,7 @@
     "@unocss/preset-icons": "^0.53.1",
     "@unocss/preset-uno": "^0.53.1",
     "@vitejs/plugin-vue": "^4.1.0",
+    "@vitejs/plugin-vue-jsx": "^3.0.1",
     "@zxcvbn-ts/core": "^3.0.2",
     "eslint": "^8.43.0",
     "node-sass": "^9.0.0",

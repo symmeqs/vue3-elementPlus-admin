@@ -6,6 +6,9 @@ import Layout from '@/layout/Layout.vue'
 import Error404 from '@/views/ErrorPage/Error404.vue'
 import Workspace from '@/views/Dashboard/Workspace.vue'
 import IconRepo from '@/views/IconRepo/Index.vue'
+import User from '@/views/Authorization/User.vue'
+import Role from '@/views/Authorization/Role.vue'
+import Resource from '@/views/Authorization/Resource.vue'
 
 const routes = [
   {
@@ -29,6 +32,18 @@ const routes = [
       {
         path: '/404',
         component: Error404,
+      },
+      {
+        path: '/authorization/user',
+        component: User,
+      },
+      {
+        path: '/authorization/role',
+        component: Role,
+      },
+      {
+        path: '/authorization/resource',
+        component: Resource,
       },
     ],
   },

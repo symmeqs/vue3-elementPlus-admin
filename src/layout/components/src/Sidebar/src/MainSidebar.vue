@@ -27,6 +27,11 @@ const mockMenuList = reactive([
     name: '设置',
   },
   {
+    icon: 'i-cib-telegram-plane',
+    path: 'authorization',
+    name: '用户权限',
+  },
+  {
     icon: 'i-cib-nintendo-gamecube',
     path: 'projectmanagement',
     name: '项目管理',

@@ -48,6 +48,25 @@ const subMenuTree: Map<String, Array<MenuItemType>> = new Map([
       },
     ],
   ],
+  [
+    'authorization', [
+      {
+        routePath: '/authorization/user',
+        icon: 'i-ant-design-dashboard-filled',
+        label: '用户管理',
+      },
+      {
+        routePath: '/authorization/role',
+        icon: 'i-ant-design-dashboard-filled',
+        label: ' 角色管理',
+      },
+      {
+        routePath: '/authorization/role',
+        icon: 'i-ant-design-dashboard-filled',
+        label: '资源管理',
+      },
+    ],
+  ],
 ])
 
 const route = useRoute()

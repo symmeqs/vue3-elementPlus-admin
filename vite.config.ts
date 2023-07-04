@@ -2,6 +2,7 @@ import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { ElementPlusResolve, createStyleImportPlugin } from 'vite-plugin-style-import'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 
 // Uno CSS
 import UnoCSS from 'unocss/vite'
@@ -16,6 +17,7 @@ function pathResolve(dir: string) {
 export default defineConfig({
   plugins: [
     vue(),
+    vueJsx(),
     UnoCSS(),
     createStyleImportPlugin({
       resolves: [ElementPlusResolve()],
