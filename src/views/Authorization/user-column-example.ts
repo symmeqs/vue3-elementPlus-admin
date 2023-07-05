@@ -1,5 +1,5 @@
 import { Alignment } from 'element-plus/es/components/table-v2/src/constants'
-import type { TableV2Column } from './column'
+import type { TableV2Column } from '@/hooks/web/useTableV2/types/tableV2'
 
 const tableV2ExampleColumns: Array<TableV2Column> = [
   {
@@ -33,7 +33,7 @@ const tableV2ExampleColumns: Array<TableV2Column> = [
     width: 120,
     filterOption: {
       isMulti: false,
-      options: ['财务部', '技术部', 'HR 部'],
+      options: ['财务部', '技术部', 'HR部'],
     },
   },
   {

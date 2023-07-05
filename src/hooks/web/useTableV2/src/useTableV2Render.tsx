@@ -1,7 +1,7 @@
 import type { HeaderCellSlotProps } from 'element-plus'
 import type { AnyColumn } from 'element-plus/es/components/table-v2/src/common'
 import { reactive } from 'vue'
-import type { TableV2Column } from './column'
+import type { TableV2Column, TableV2Filter } from '../types/tableV2'
 import TableFilterCheckBoxVue from './TableFilterCheckBox.vue'
 
 /**
@@ -11,8 +11,8 @@ import TableFilterCheckBoxVue from './TableFilterCheckBox.vue'
  * @returns
  */
 export function renderColumns(columns: Array<TableV2Column>) {
-  const filterState: Map<string, object> = reactive(new Map())
-  const tableColumns: AnyColumn[] = columns.map((column: TableV2Column) => {
+  const filterState: Map<string, TableV2Filter> = reactive(new Map())
+  const tableV2Columns: AnyColumn[] = columns.map((column: TableV2Column) => {
     const tableColumn: AnyColumn = {
       key: column.dataKey,
       dataKey: column.dataKey,
@@ -22,7 +22,7 @@ export function renderColumns(columns: Array<TableV2Column>) {
     }
 
     if (column.filterOption) {
-      const filterModel = reactive({ selected: [] })
+      const filterModel: TableV2Filter = reactive({ selected: [] })
 
       tableColumn.headerCellRenderer = (_props: HeaderCellSlotProps) => {
         return (
@@ -38,5 +38,5 @@ export function renderColumns(columns: Array<TableV2Column>) {
     return tableColumn
   })
 
-  return { tableColumns, filterState }
+  return { tableV2Columns, filterState }
 }

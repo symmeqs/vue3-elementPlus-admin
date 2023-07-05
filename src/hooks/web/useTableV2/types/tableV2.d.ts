@@ -12,3 +12,7 @@ export type TableV2Column = {
     filterOption?: FilterOption
     sortable?: boolean
 }
+
+export type TableV2Filter = {
+    selected: Array
+}

@@ -1,11 +1,12 @@
 <script lang="ts" setup>
-import { ElButton, ElCard, ElPagination } from 'element-plus'
-import Table from './Table/src/Table.vue'
-import { getExampleColumns } from './Table/src/table-column-example'
+import { ElButton, ElCard, ElPagination, ElTableV2 } from 'element-plus'
+import { ref, watch } from 'vue'
+import { getExampleColumns } from './user-column-example'
 import { getUserData } from './user-mock-data'
-import { usePagination } from '@/hooks/web/usePagination.ts'
 import { TableSearch } from '@/components/TableSearch'
+import { useTableV2 } from '@/hooks/web/useTableV2'
 
+const { usePagination, tableV2Columns, filterState } = useTableV2(getExampleColumns())
 const { pageState, pageConfig, handleSizeChange, handleCurrentChange } = usePagination()
 
 const searchOptions = [{
@@ -16,9 +17,19 @@ const searchOptions = [{
   value: 'username',
 }]
 
-function handleSearch(searchState: object) {
-  console.log(searchState)
+const tableData = ref(getUserData(filterState))
+
+function handleSearch(_searchState: object) {
+  // TODO
 }
+
+watch(
+  () => filterState,
+  (_currentFilterState) => {
+    tableData.value = getUserData(filterState)
+  },
+  { deep: true },
+)
 </script>
 
 <template>
@@ -37,7 +48,12 @@ function handleSearch(searchState: object) {
       </div>
     </div>
 
-    <Table :columns="getExampleColumns()" :data="getUserData(true)" />
+    <ElTableV2
+      :columns="tableV2Columns"
+      :data="tableData"
+      :width="700"
+      :height="400"
+    />
 
     <ElPagination
       v-model:current-page="pageState.currentPage"
