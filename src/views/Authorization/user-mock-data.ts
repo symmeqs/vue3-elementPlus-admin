@@ -1,16 +1,8 @@
 import type { TableV2Filter } from '@/hooks/web/useTableV2/types/tableV2'
 
-interface User {
-  avatar: string
-  name: string
-  username: string
-  email: string
-  department: string
-  role: string
-}
-
 const userData: Array<User> = [
   {
+    id: '0',
     avatar: 'src/assets/imgs/avatar.jpg',
     name: '赵兴君',
     username: '15521071030',
@@ -19,6 +11,7 @@ const userData: Array<User> = [
     role: '超级管理员',
   },
   {
+    id: '1',
     avatar: 'src/assets/imgs/avatar.jpg',
     name: '赵兴',
     username: '15521071030',
@@ -27,6 +20,7 @@ const userData: Array<User> = [
     role: 'A类业务员',
   },
   {
+    id: '2',
     avatar: 'src/assets/imgs/avatar.jpg',
     name: '兴君',
     username: '15521071030',
@@ -35,6 +29,7 @@ const userData: Array<User> = [
     role: 'A类业务员',
   },
   {
+    id: '3',
     avatar: 'src/assets/imgs/avatar.jpg',
     name: '赵君',
     username: '15521071030',
@@ -43,6 +38,7 @@ const userData: Array<User> = [
     role: 'A类业务员',
   },
   {
+    id: '4',
     avatar: 'src/assets/imgs/avatar.jpg',
     name: '赵赵赵',
     username: '15521071030',
@@ -51,6 +47,7 @@ const userData: Array<User> = [
     role: 'B类业务员',
   },
   {
+    id: '5',
     avatar: 'src/assets/imgs/avatar.jpg',
     name: '兴兴兴',
     username: '15521071030',
@@ -59,6 +56,7 @@ const userData: Array<User> = [
     role: 'B类业务员',
   },
   {
+    id: '6',
     avatar: 'src/assets/imgs/avatar.jpg',
     name: '君君君',
     username: '15521071030',
@@ -80,7 +78,6 @@ export function getUserData(tableV2FilterMap: Map<string, TableV2Filter>) {
     for (const tableV2FilterKey of tableV2FilterMap.keys()) {
       const tableV2FilterSelected: [] = tableV2FilterMap.get(tableV2FilterKey)?.selected
 
-      // @ts-expect-error 索引的类型没有指明为 string
       if (tableV2FilterSelected.length !== 0 && !tableV2FilterMap.get(tableV2FilterKey)?.selected.includes(data[tableV2FilterKey]))
         return false
     }

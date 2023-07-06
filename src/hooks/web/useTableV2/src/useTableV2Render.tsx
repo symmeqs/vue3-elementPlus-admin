@@ -1,8 +1,10 @@
-import type { HeaderCellSlotProps } from 'element-plus'
+import { type HeaderCellSlotProps } from 'element-plus'
 import type { AnyColumn } from 'element-plus/es/components/table-v2/src/common'
+import type { Ref } from 'vue'
 import { reactive } from 'vue'
-import type { TableV2Column, TableV2Filter } from '../types/tableV2'
+import type { TableRow, TableV2Column, TableV2Filter } from '../types/tableV2'
 import TableFilterCheckBoxVue from './TableFilterCheckBox.vue'
+import { useSelection } from './useSelection'
 
 /**
  * 将业务 Column 转换为 TableV2 Column，并组装 Header
@@ -10,8 +12,9 @@ import TableFilterCheckBoxVue from './TableFilterCheckBox.vue'
  * @param columns
  * @returns
  */
-export function renderColumns(columns: Array<TableV2Column>) {
+export function renderColumns(columns: Array<TableV2Column>, tableData: Ref<TableRow[]>) {
   const filterState: Map<string, TableV2Filter> = reactive(new Map())
+
   const tableV2Columns: AnyColumn[] = columns.map((column: TableV2Column) => {
     const tableColumn: AnyColumn = {
       key: column.dataKey,
@@ -37,6 +40,9 @@ export function renderColumns(columns: Array<TableV2Column>) {
 
       filterState.set(column.dataKey, filterModel)
     }
+
+    if (column.dataKey === 'selection')
+      useSelection(tableColumn, tableData)
 
     return tableColumn
   })

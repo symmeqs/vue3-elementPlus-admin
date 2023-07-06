@@ -11,10 +11,16 @@ export type TableV2Column = {
     align?: Alignment
     filterOption?: FilterOption
     sortable?: boolean
+    selection?: boolean
     cellRenderer?: CellRenderer<T>
     headerCellRenderer? : HeaderCellRenderer<T>
 }
 
 export type TableV2Filter = {
     selected: Array
+}
+
+export type TableRow = {
+    id: string
+    checked?: boolean
 }

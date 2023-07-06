@@ -4,6 +4,12 @@ import type { TableV2Column } from '@/hooks/web/useTableV2/types/tableV2'
 
 const tableV2ExampleColumns: Array<TableV2Column> = [
   {
+    key: 'selection',
+    title: '',
+    dataKey: 'selection',
+    width: 50,
+  },
+  {
     key: 'avatar',
     dataKey: 'avatar',
     title: '',

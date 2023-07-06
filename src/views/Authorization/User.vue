@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
+import { watch } from 'vue'
 import { getExampleColumns } from './user-column-example'
 import { getUserData } from './user-mock-data'
 import { TableSearch } from '@/components/TableSearch'
 import { useTableV2 } from '@/hooks/web/useTableV2'
 
-const { usePagination, tableV2Columns, filterState } = useTableV2(getExampleColumns())
+const { usePagination, tableV2Columns, filterState, tableData } = useTableV2(getExampleColumns())
 const { pageState, pageConfig, handleSizeChange, handleCurrentChange } = usePagination()
 
 const searchOptions = [{
@@ -16,7 +16,7 @@ const searchOptions = [{
   value: 'username',
 }]
 
-const tableData = ref(getUserData(filterState))
+tableData.value = getUserData(filterState)
 
 function handleSearch(_searchState: object) {
   // TODO
@@ -29,10 +29,17 @@ watch(
   },
   { deep: true },
 )
+
+function test() {
+  // console.log(tableData.value)
+}
 </script>
 
 <template>
   <el-card>
+    <button @click="test">
+      测试
+    </button>
     <div class="flex justify-between flex-row-reverse mb-6 w-full">
       <TableSearch :select-options="searchOptions" @handle-search="handleSearch" />
       <div class="flex">
