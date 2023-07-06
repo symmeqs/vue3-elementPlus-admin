@@ -5,11 +5,11 @@ import type { TableRow, TableV2Column } from './types/tableV2'
 
 export function useTableV2(columns: Array<TableV2Column>) {
   const tableData: Ref<TableRow[]> = ref([])
-  const { tableV2Columns, filterState } = renderColumns(columns, tableData)
+  const { tableV2Columns, filterGroupState } = renderColumns(columns, tableData)
   return {
     usePagination,
     tableV2Columns,
-    filterState,
+    filterGroupState,
     tableData,
   }
 }

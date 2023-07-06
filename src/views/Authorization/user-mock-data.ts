@@ -1,4 +1,4 @@
-import type { TableV2Filter } from '@/hooks/web/useTableV2/types/tableV2'
+import type { FilterStateProps } from '@/hooks/web/useTableV2/types/tableV2'
 
 const userData: Array<User> = [
   {
@@ -66,7 +66,7 @@ const userData: Array<User> = [
   },
 ]
 
-export function getUserData(tableV2FilterMap: Map<string, TableV2Filter>) {
+export function getUserData(tableV2FilterMap: Map<string, FilterStateProps>) {
   let hasFilter = false
   for (const tableV2FilterKey of tableV2FilterMap.keys())
     hasFilter ||= tableV2FilterMap.get(tableV2FilterKey)?.selected.length > 0
@@ -83,4 +83,16 @@ export function getUserData(tableV2FilterMap: Map<string, TableV2Filter>) {
     }
     return true
   })
+}
+
+const searchOptions = [{
+  label: '姓名',
+  value: 'name',
+}, {
+  label: '账号',
+  value: 'username',
+}]
+
+export function getSearchOptions() {
+  return searchOptions
 }

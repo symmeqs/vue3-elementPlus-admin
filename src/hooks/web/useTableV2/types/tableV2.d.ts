@@ -16,9 +16,9 @@ export type TableV2Column = {
     headerCellRenderer? : HeaderCellRenderer<T>
 }
 
-export type TableV2Filter = {
+interface FilterStateProps {
     selected: Array
-}
+  }
 
 export type TableRow = {
     id: string

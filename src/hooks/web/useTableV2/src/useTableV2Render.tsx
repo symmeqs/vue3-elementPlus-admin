@@ -1,8 +1,8 @@
 import { type HeaderCellSlotProps } from 'element-plus'
 import type { AnyColumn } from 'element-plus/es/components/table-v2/src/common'
 import type { Ref } from 'vue'
-import { reactive } from 'vue'
-import type { TableRow, TableV2Column, TableV2Filter } from '../types/tableV2'
+import { ref } from 'vue'
+import type { FilterStateProps, TableRow, TableV2Column } from '../types/tableV2'
 import TableFilterCheckBoxVue from './TableFilterCheckBox.vue'
 import { useSelection } from './useSelection'
 
@@ -13,7 +13,7 @@ import { useSelection } from './useSelection'
  * @returns
  */
 export function renderColumns(columns: Array<TableV2Column>, tableData: Ref<TableRow[]>) {
-  const filterState: Map<string, TableV2Filter> = reactive(new Map())
+  const filterGroupState: Ref<Map<string, FilterStateProps>> = ref(new Map())
 
   const tableV2Columns: AnyColumn[] = columns.map((column: TableV2Column) => {
     const tableColumn: AnyColumn = {
@@ -27,18 +27,16 @@ export function renderColumns(columns: Array<TableV2Column>, tableData: Ref<Tabl
     }
 
     if (column.filterOption) {
-      const filterModel: TableV2Filter = reactive({ selected: [] })
+      filterGroupState.value.set(column.dataKey, { selected: [] })
 
       tableColumn.headerCellRenderer = (_props: HeaderCellSlotProps) => {
         return (
           <div class="flex items-center justify-center">
             <span class="mr-2">{column.title}</span>
-            <TableFilterCheckBoxVue v-model={filterModel.selected} options={column.filterOption!.options}/>
+            <TableFilterCheckBoxVue v-model={filterGroupState.value.get(column.dataKey)!.selected} options={column.filterOption!.options}/>
           </div>
         )
       }
-
-      filterState.set(column.dataKey, filterModel)
     }
 
     if (column.dataKey === 'selection')
@@ -47,5 +45,5 @@ export function renderColumns(columns: Array<TableV2Column>, tableData: Ref<Tabl
     return tableColumn
   })
 
-  return { tableV2Columns, filterState }
+  return { tableV2Columns, filterGroupState }
 }
