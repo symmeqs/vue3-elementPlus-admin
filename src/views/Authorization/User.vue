@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { ElButton, ElCard, ElPagination, ElTableV2 } from 'element-plus'
 import { ref, watch } from 'vue'
 import { getExampleColumns } from './user-column-example'
 import { getUserData } from './user-mock-data'
@@ -33,29 +32,42 @@ watch(
 </script>
 
 <template>
-  <ElCard>
+  <el-card>
     <div class="flex justify-between flex-row-reverse mb-6 w-full">
       <TableSearch :select-options="searchOptions" @handle-search="handleSearch" />
       <div class="flex">
-        <ElButton type="primary">
+        <el-button type="primary">
           新增
-        </ElButton>
-        <ElButton type="danger">
+        </el-button>
+        <el-button type="danger">
           删除
-        </ElButton>
-        <ElButton>提交审批</ElButton>
-        <ElButton>批量编辑</ElButton>
+        </el-button>
+        <el-button>提交审批</el-button>
+        <el-button>批量编辑</el-button>
       </div>
     </div>
 
-    <ElTableV2
+    <div class="h-[700px]">
+      <el-auto-resizer>
+        <template #default="{ height, width }">
+          <el-table-v2
+            :columns="tableV2Columns"
+            :data="tableData"
+            :width="width"
+            :height="height"
+            fixed
+          />
+        </template>
+      </el-auto-resizer>
+    </div>
+    <!-- <ElTableV2
       :columns="tableV2Columns"
       :data="tableData"
-      :width="700"
+      :width="1200"
       :height="400"
-    />
+    /> -->
 
-    <ElPagination
+    <el-pagination
       v-model:current-page="pageState.currentPage"
       v-model:page-size="pageState.pageSize"
       :page-sizes="pageConfig.pageSizes"
@@ -65,5 +77,5 @@ watch(
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
     />
-  </ElCard>
+  </el-card>
 </template>

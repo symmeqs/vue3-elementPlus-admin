@@ -1,6 +1,10 @@
 import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+
 import { ElementPlusResolve, createStyleImportPlugin } from 'vite-plugin-style-import'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
@@ -19,6 +23,12 @@ export default defineConfig({
     vue(),
     vueJsx(),
     UnoCSS(),
+    AutoImport({
+      resolvers: [ElementPlusResolver()],
+    }),
+    Components({
+      resolvers: [ElementPlusResolver()],
+    }),
     createStyleImportPlugin({
       resolves: [ElementPlusResolve()],
       libs: [{

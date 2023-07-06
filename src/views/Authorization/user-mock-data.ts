@@ -11,7 +11,7 @@ interface User {
 
 const userData: Array<User> = [
   {
-    avatar: '1234',
+    avatar: 'src/assets/imgs/avatar.jpg',
     name: '赵兴君',
     username: '15521071030',
     email: '1099322935@qq.com',
@@ -19,7 +19,7 @@ const userData: Array<User> = [
     role: '超级管理员',
   },
   {
-    avatar: '1234',
+    avatar: 'src/assets/imgs/avatar.jpg',
     name: '赵兴',
     username: '15521071030',
     email: '1099322935@qq.com',
@@ -27,7 +27,7 @@ const userData: Array<User> = [
     role: 'A类业务员',
   },
   {
-    avatar: '1234',
+    avatar: 'src/assets/imgs/avatar.jpg',
     name: '兴君',
     username: '15521071030',
     email: '1099322935@qq.com',
@@ -35,7 +35,7 @@ const userData: Array<User> = [
     role: 'A类业务员',
   },
   {
-    avatar: '1234',
+    avatar: 'src/assets/imgs/avatar.jpg',
     name: '赵君',
     username: '15521071030',
     email: '1099322935@qq.com',
@@ -43,7 +43,7 @@ const userData: Array<User> = [
     role: 'A类业务员',
   },
   {
-    avatar: '1234',
+    avatar: 'src/assets/imgs/avatar.jpg',
     name: '赵赵赵',
     username: '15521071030',
     email: '1099322935@qq.com',
@@ -51,7 +51,7 @@ const userData: Array<User> = [
     role: 'B类业务员',
   },
   {
-    avatar: '1234',
+    avatar: 'src/assets/imgs/avatar.jpg',
     name: '兴兴兴',
     username: '15521071030',
     email: '1099322935@qq.com',
@@ -59,7 +59,7 @@ const userData: Array<User> = [
     role: 'B类业务员',
   },
   {
-    avatar: '1234',
+    avatar: 'src/assets/imgs/avatar.jpg',
     name: '君君君',
     username: '15521071030',
     email: '1099322935@qq.com',

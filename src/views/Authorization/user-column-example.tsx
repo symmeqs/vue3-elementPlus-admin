@@ -1,4 +1,5 @@
 import { Alignment } from 'element-plus/es/components/table-v2/src/constants'
+import { ElTag } from 'element-plus'
 import type { TableV2Column } from '@/hooks/web/useTableV2/types/tableV2'
 
 const tableV2ExampleColumns: Array<TableV2Column> = [
@@ -6,9 +7,11 @@ const tableV2ExampleColumns: Array<TableV2Column> = [
     key: 'avatar',
     dataKey: 'avatar',
     title: '',
-    width: 100,
+    width: 60,
     align: Alignment.CENTER,
     sortable: true,
+    cellRenderer: ({ cellData: avatar }: { cellData: string }) =>
+      <img src={avatar} class="w-[27px] h-[27px] rounded-md"/>,
   },
   {
     key: 'name',
@@ -25,6 +28,8 @@ const tableV2ExampleColumns: Array<TableV2Column> = [
       isMulti: false,
       options: ['超级管理员', 'A类业务员', 'B类业务员'],
     },
+    cellRenderer: ({ cellData: role }: { cellData: string }) =>
+      <ElTag>{ role }</ElTag>,
   },
   {
     key: 'department',

@@ -19,6 +19,8 @@ export function renderColumns(columns: Array<TableV2Column>) {
       title: column.title,
       width: column.width ?? 100,
       align: column.align,
+      headerCellRenderer: column.headerCellRenderer,
+      cellRenderer: column.cellRenderer,
     }
 
     if (column.filterOption) {
@@ -35,6 +37,7 @@ export function renderColumns(columns: Array<TableV2Column>) {
 
       filterState.set(column.dataKey, filterModel)
     }
+
     return tableColumn
   })
 

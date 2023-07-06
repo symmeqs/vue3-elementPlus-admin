@@ -1,34 +1,47 @@
 <script lang="ts" setup>
-import { ElTable, ElTableColumn } from 'element-plus'
+function generateColumns(length = 10, prefix = 'column-', props?: any) {
+  return Array.from({ length }).map((_, columnIndex) => ({
+    ...props,
+    key: `${prefix}${columnIndex}`,
+    dataKey: `${prefix}${columnIndex}`,
+    title: `Column ${columnIndex}`,
+    width: 150,
+  }))
+}
 
-const tableData = [
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-]
+function generateData(columns: ReturnType<typeof generateColumns>,
+  length = 200,
+  prefix = 'row-') {
+  return Array.from({ length }).map((_, rowIndex) => {
+    return columns.reduce(
+      (rowData, column, columnIndex) => {
+        rowData[column.dataKey] = `Row ${rowIndex} - Col ${columnIndex}`
+        return rowData
+      },
+      {
+        id: `${prefix}${rowIndex}`,
+        parentId: null,
+      },
+    )
+  })
+}
+
+const columns = generateColumns(10)
+const data = generateData(columns, 200)
 </script>
 
 <template>
-  <ElTable :data="tableData" border style="width: 100%">
-    <ElTableColumn prop="date" label="Date" width="180" />
-    <ElTableColumn prop="name" label="Name" width="180" />
-    <ElTableColumn prop="address" label="Address" />
-  </ElTable>
+  <div style="height: 400px">
+    <el-auto-resizer>
+      <template #default="{ height, width }">
+        <el-table-v2
+          :columns="columns"
+          :data="data"
+          :width="width"
+          :height="height"
+          fixed
+        />
+      </template>
+    </el-auto-resizer>
+  </div>
 </template>

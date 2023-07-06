@@ -11,6 +11,8 @@ export type TableV2Column = {
     align?: Alignment
     filterOption?: FilterOption
     sortable?: boolean
+    cellRenderer?: CellRenderer<T>
+    headerCellRenderer? : HeaderCellRenderer<T>
 }
 
 export type TableV2Filter = {
