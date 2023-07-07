@@ -10,6 +10,13 @@ const tableV2ExampleColumns: Array<TableV2Column> = [
     width: 50,
   },
   {
+    key: 'id',
+    dataKey: 'id',
+    title: '',
+    width: 60,
+    hidden: true,
+  },
+  {
     key: 'avatar',
     dataKey: 'avatar',
     title: '',

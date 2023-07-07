@@ -1,47 +1,59 @@
 <script lang="ts" setup>
-function generateColumns(length = 10, prefix = 'column-', props?: any) {
-  return Array.from({ length }).map((_, columnIndex) => ({
-    ...props,
-    key: `${prefix}${columnIndex}`,
-    dataKey: `${prefix}${columnIndex}`,
-    title: `Column ${columnIndex}`,
-    width: 150,
-  }))
+import { getExampleColumns } from './role-column-example'
+import { getRoleData, getSearchOptions } from './role-mock-data'
+import { TableSearch } from '@/components/TableSearch'
+import { useTableV2 } from '@/hooks/web/useTableV2'
+
+const { usePagination, tableV2Columns, tableData } = useTableV2(getExampleColumns())
+const { pageState, pageConfig, handleSizeChange, handleCurrentChange } = usePagination()
+
+tableData.value = getRoleData()
+
+function handleSearch(_searchState: object) {
+  // TODO
 }
 
-function generateData(columns: ReturnType<typeof generateColumns>,
-  length = 200,
-  prefix = 'row-') {
-  return Array.from({ length }).map((_, rowIndex) => {
-    return columns.reduce(
-      (rowData, column, columnIndex) => {
-        rowData[column.dataKey] = `Row ${rowIndex} - Col ${columnIndex}`
-        return rowData
-      },
-      {
-        id: `${prefix}${rowIndex}`,
-        parentId: null,
-      },
-    )
-  })
+function test() {
+  // console.log(tableData.value)
 }
-
-const columns = generateColumns(10)
-const data = generateData(columns, 200)
 </script>
 
 <template>
-  <div style="height: 400px">
-    <el-auto-resizer>
-      <template #default="{ height, width }">
-        <el-table-v2
-          :columns="columns"
-          :data="data"
-          :width="width"
-          :height="height"
-          fixed
-        />
-      </template>
-    </el-auto-resizer>
-  </div>
+  <el-card>
+    <div class="flex justify-between flex-row-reverse mb-6 w-full">
+      <TableSearch :select-options="getSearchOptions()" @handle-search="handleSearch" />
+      <div class="flex">
+        <el-button type="primary" @click="test">
+          新增
+        </el-button>
+        <el-button type="danger">
+          删除
+        </el-button>
+      </div>
+    </div>
+
+    <div class="h-[700px]">
+      <el-auto-resizer>
+        <template #default="{ height, width }">
+          <el-table-v2
+            :columns="tableV2Columns"
+            :data="tableData"
+            :width="width"
+            :height="height"
+            fixed
+          />
+        </template>
+      </el-auto-resizer>
+    </div>
+    <el-pagination
+      v-model:current-page="pageState.currentPage"
+      v-model:page-size="pageState.pageSize"
+      :page-sizes="pageConfig.pageSizes"
+      :layout="pageConfig.layout"
+      :total="pageState.total"
+      class="mt-3"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+    />
+  </el-card>
 </template>

@@ -61,7 +61,7 @@ const subMenuTree: Map<String, Array<MenuItemType>> = new Map([
         label: ' 角色管理',
       },
       {
-        routePath: '/authorization/role',
+        routePath: '/authorization/resource',
         icon: 'i-ant-design-dashboard-filled',
         label: '资源管理',
       },

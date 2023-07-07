@@ -1,3 +1,4 @@
+import type { User } from './user'
 import type { FilterStateProps } from '@/hooks/web/useTableV2/types/tableV2'
 
 const userData: Array<User> = [

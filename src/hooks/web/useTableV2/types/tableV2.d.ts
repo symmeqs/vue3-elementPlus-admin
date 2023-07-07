@@ -11,6 +11,7 @@ export type TableV2Column = {
     align?: Alignment
     filterOption?: FilterOption
     sortable?: boolean
+    hidden?: boolean
     selection?: boolean
     cellRenderer?: CellRenderer<T>
     headerCellRenderer? : HeaderCellRenderer<T>
@@ -20,7 +21,7 @@ interface FilterStateProps {
     selected: Array
   }
 
-export type TableRow = {
+export type TableV2Row = {
     id: string
     checked?: boolean
 }

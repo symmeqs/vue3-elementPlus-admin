@@ -2,7 +2,7 @@ import { type HeaderCellSlotProps } from 'element-plus'
 import type { AnyColumn } from 'element-plus/es/components/table-v2/src/common'
 import type { Ref } from 'vue'
 import { ref } from 'vue'
-import type { FilterStateProps, TableRow, TableV2Column } from '../types/tableV2'
+import type { FilterStateProps, TableV2Column, TableV2Row } from '../types/tableV2'
 import TableFilterCheckBoxVue from './TableFilterCheckBox.vue'
 import { useSelection } from './useSelection'
 
@@ -12,7 +12,7 @@ import { useSelection } from './useSelection'
  * @param columns
  * @returns
  */
-export function renderColumns(columns: Array<TableV2Column>, tableData: Ref<TableRow[]>) {
+export function renderColumns(columns: Array<TableV2Column>, tableData: Ref<TableV2Row[]>) {
   const filterGroupState: Ref<Map<string, FilterStateProps>> = ref(new Map())
 
   const tableV2Columns: AnyColumn[] = columns.map((column: TableV2Column) => {
@@ -22,6 +22,7 @@ export function renderColumns(columns: Array<TableV2Column>, tableData: Ref<Tabl
       title: column.title,
       width: column.width ?? 100,
       align: column.align,
+      hidden: column.hidden,
       headerCellRenderer: column.headerCellRenderer,
       cellRenderer: column.cellRenderer,
     }
