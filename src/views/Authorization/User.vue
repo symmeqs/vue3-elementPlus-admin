@@ -29,46 +29,42 @@ const dialogVisible = ref(false)
 <template>
   <el-card>
     <Dialog v-model="dialogVisible" title="编辑">
-      <el-scrollbar>
-        <el-form>
-          <el-row :gutter="20">
-            <el-col :span="8">
-              <el-form-item label="头像">
-                <el-input />
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row :gutter="20">
-            <el-col :span="8">
-              <el-form-item label="姓名">
-                <el-input />
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item label="角色">
-                <el-input />
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item label="部门">
-                <el-input />
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row :gutter="20">
-            <el-col :span="8">
-              <el-form-item label="电话">
-                <el-input />
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item label="邮箱">
-                <el-input />
-              </el-form-item>
-            </el-col>
-          </el-row>
-        </el-form>
-      </el-scrollbar>
+      <el-form>
+        <el-row :gutter="20">
+          <el-col :span="8">
+            <el-form-item label="头像">
+              <el-input />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :span="8">
+            <el-form-item label="姓名">
+              <el-input />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="角色">
+              <el-input />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="部门">
+              <el-input />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <!-- <el-col :span="8"> -->
+          <el-form-item label="电话号码">
+            <el-input />
+          </el-form-item>
+          <el-form-item label="邮箱">
+            <el-input />
+          </el-form-item>
+          <!-- </el-col> -->
+        </el-row>
+      </el-form>
     </Dialog>
 
     <div class="flex justify-between flex-row-reverse mb-6 w-full">

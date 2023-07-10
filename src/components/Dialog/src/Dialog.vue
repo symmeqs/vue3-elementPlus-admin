@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, useAttrs } from 'vue'
+import { ref, useAttrs, useSlots } from 'vue'
 
 const props = defineProps({
   modelValue: { type: Boolean, default: false },
@@ -35,17 +35,17 @@ const isFullScreen = ref(false)
             class="w-[35px] pt-[3px] mr-6 text-gray-4 hover:text-blue-500 cursor-pointer text-md z-10"
             @click="isFullScreen = !isFullScreen"
           >
-            <div
-              :class="isFullScreen ? 'i-zmdi-fullscreen-exit' : 'i-zmdi-fullscreen'"
-              class="m-auto"
-            />
+            <div :class="isFullScreen ? 'i-zmdi-fullscreen-exit' : 'i-zmdi-fullscreen'" class="m-auto" />
           </div>
         </div>
       </template>
-      <slot />
 
-      <template #foooter>
-        123
+      <el-scrollbar>
+        <slot />
+      </el-scrollbar>
+
+      <template v-if="useSlots().footer" #footer>
+        <slot name="footer" />
       </template>
     </ElDialog>
   </div>
