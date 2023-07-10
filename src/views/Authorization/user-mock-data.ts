@@ -78,8 +78,9 @@ export function getUserData(tableV2FilterMap: Map<string, FilterStateProps>) {
   return userData.filter((data: User) => {
     for (const tableV2FilterKey of tableV2FilterMap.keys()) {
       const tableV2FilterSelected: [] = tableV2FilterMap.get(tableV2FilterKey)?.selected
+      if (tableV2FilterSelected.length !== 0
 
-      if (tableV2FilterSelected.length !== 0 && !tableV2FilterMap.get(tableV2FilterKey)?.selected.includes(data[tableV2FilterKey]))
+        && !tableV2FilterMap.get(tableV2FilterKey)?.selected.includes(data[tableV2FilterKey as keyof typeof data]))
         return false
     }
     return true

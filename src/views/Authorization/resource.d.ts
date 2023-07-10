@@ -6,16 +6,17 @@ export enum MenuLevel {
     SubMenuGroup = '子菜单组'
 }
 
-declare type ParentMenu = {
+export interface ParentMenu {
     id: string,
     name: string
 }
 
-declare type Resource = {
+export interface Resource extends TableV2Row {
     name: string
     path: string
     component: string
     level: MenuLevel
     icon?: string
     belong?: ParentMenu
-  } & TableV2Row
+}
+ 

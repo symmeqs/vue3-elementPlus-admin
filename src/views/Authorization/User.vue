@@ -1,9 +1,10 @@
 <script lang="ts" setup>
-import { watch } from 'vue'
+import { ref, watch } from 'vue'
 import { getExampleColumns } from './user-column-example'
 import { getSearchOptions, getUserData } from './user-mock-data'
 import { TableSearch } from '@/components/TableSearch'
 import { useTableV2 } from '@/hooks/web/useTableV2'
+import { Dialog } from '@/components/Dialog'
 
 const { usePagination, tableV2Columns, filterGroupState, tableData } = useTableV2(getExampleColumns())
 const { pageState, pageConfig, handleSizeChange, handleCurrentChange } = usePagination()
@@ -21,14 +22,59 @@ watch(
   },
   { deep: true },
 )
+
+const isShowEdit = ref(false)
 </script>
 
 <template>
   <el-card>
+    <Dialog v-model="isShowEdit">
+      <el-scrollbar>
+        <el-form>
+          <el-row :gutter="20">
+            <el-col :span="8">
+              <el-form-item label="头像">
+                <el-input />
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="20">
+            <el-col :span="8">
+              <el-form-item label="姓名">
+                <el-input />
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item label="角色">
+                <el-input />
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item label="部门">
+                <el-input />
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="20">
+            <el-col :span="8">
+              <el-form-item label="电话">
+                <el-input />
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item label="邮箱">
+                <el-input />
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-form>
+      </el-scrollbar>
+    </Dialog>
+
     <div class="flex justify-between flex-row-reverse mb-6 w-full">
       <TableSearch :select-options="getSearchOptions()" @handle-search="handleSearch" />
       <div class="flex">
-        <el-button type="primary">
+        <el-button type="primary" @click="isShowEdit = true">
           新增
         </el-button>
         <el-button type="danger">

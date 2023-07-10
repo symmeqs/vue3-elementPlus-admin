@@ -1,9 +1,9 @@
-export type FilterOption = {
+export interface FilterOption {
     isMulti: boolean
     options: Array<string>
 }
 
-export type TableV2Column = {
+export interface TableV2Column {
     key: string
     dataKey: string
     title: string
@@ -21,7 +21,7 @@ interface FilterStateProps {
     selected: Array
   }
 
-export type TableV2Row = {
+export interface TableV2Row {
     id: string
     checked?: boolean
 }

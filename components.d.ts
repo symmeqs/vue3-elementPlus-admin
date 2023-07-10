@@ -8,10 +8,18 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     ConfigGlobal: typeof import('./src/components/ConfigGlobal/src/ConfigGlobal.vue')['default']
+    Dialog: typeof import('./src/components/Dialog/src/Dialog.vue')['default']
     ElAutoResizer: typeof import('element-plus/es')['ElAutoResizer']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
+    ElCol: typeof import('element-plus/es')['ElCol']
+    ElDialog: typeof import('element-plus/es')['ElDialog']
+    ElForm: typeof import('element-plus/es')['ElForm']
+    ElFormItem: typeof import('element-plus/es')['ElFormItem']
+    ElInput: typeof import('element-plus/es')['ElInput']
     ElPagination: typeof import('element-plus/es')['ElPagination']
+    ElRow: typeof import('element-plus/es')['ElRow']
+    ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     ElTableV2: typeof import('element-plus/es')['ElTableV2']
     InputPassword: typeof import('./src/components/InputPassword/src/InputPassword.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
