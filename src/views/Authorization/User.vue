@@ -23,12 +23,12 @@ watch(
   { deep: true },
 )
 
-const isShowEdit = ref(false)
+const dialogVisible = ref(false)
 </script>
 
 <template>
   <el-card>
-    <Dialog v-model="isShowEdit">
+    <Dialog v-model="dialogVisible" title="编辑">
       <el-scrollbar>
         <el-form>
           <el-row :gutter="20">
@@ -74,7 +74,7 @@ const isShowEdit = ref(false)
     <div class="flex justify-between flex-row-reverse mb-6 w-full">
       <TableSearch :select-options="getSearchOptions()" @handle-search="handleSearch" />
       <div class="flex">
-        <el-button type="primary" @click="isShowEdit = true">
+        <el-button type="primary" @click="dialogVisible = true">
           新增
         </el-button>
         <el-button type="danger">

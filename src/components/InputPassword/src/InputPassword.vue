@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ElInput } from 'element-plus'
-import { computed, ref, unref, watch } from 'vue'
+import { computed, ref, unref, useAttrs } from 'vue'
 import type { ZxcvbnResult } from '@zxcvbn-ts/core'
 import { zxcvbn } from '@zxcvbn-ts/core'
 import { getPrefixCls } from '@/hooks/web/useDesign'
@@ -10,27 +10,9 @@ const props = defineProps({
   showStrength: Boolean,
 })
 
-const emit = defineEmits(['update:modelValue'])
-
 const prefixCls = getPrefixCls('input-password')
 
 const password = ref(props.modelValue)
-
-watch(
-  () => props.modelValue,
-  (val: string) => {
-    if (val === password.value)
-      return
-    password.value = val
-  },
-)
-
-watch(
-  () => password.value,
-  (val: string) => {
-    emit('update:modelValue', val)
-  },
-)
 
 // 更新密码强度状态
 const getPasswordStrength = computed(() => {
@@ -45,7 +27,7 @@ const getPasswordStrength = computed(() => {
 
 <template>
   <div :class="prefixCls" class="w-[100%]">
-    <ElInput v-model="password" type="password" show-password />
+    <ElInput v-model="password" v-bind="useAttrs()" type="password" show-password />
     <div
       v-if="props.showStrength"
       :class="`${prefixCls}__bar`" class="relative h-6px mt-10px mb-6px mx-auto"
