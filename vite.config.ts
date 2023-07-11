@@ -66,6 +66,11 @@ export default defineConfig({
         changeOrigin: true,
         // rewrite: path => path.replace(/^\/api/, '')
       },
+      '/v3': {
+        target: 'https://run.mocky.io',
+        changeOrigin: true,
+        // rewrite: path => path.replace(/^\/api/, '')
+      },
     },
     hmr: {
       overlay: false,

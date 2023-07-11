@@ -21,6 +21,9 @@
     "noFallthroughCasesInSwitch": true,
     "strictFunctionTypes": false,
 
+    // 允许合成默认导入
+    "allowSyntheticDefaultImports": true,
+
     /* 路径解析 */
     "baseUrl": ".",
     "paths": { "@/*": ["src/*"] },
