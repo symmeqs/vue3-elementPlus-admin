@@ -46,4 +46,28 @@ export const iconList = [
     icon: 'i-ep-bell',
     name: 'bell',
   },
+  {
+    icon: 'i-ant-design-github-filled',
+    name: 'github',
+  },
+  {
+    icon: 'i-ant-design-wechat-filled',
+    name: 'wechat',
+  },
+  {
+    icon: 'i-ant-design-alipay-circle-filled',
+    name: 'alipay',
+  },
+  {
+    icon: 'i-ant-design-weibo-circle-filled',
+    name: 'weibo',
+  },
+  {
+    icon: 'i-ep-plus',
+    name: 'weibo',
+  },
+  {
+    icon: 'i-tabler-filter-minus',
+    name: 'filter',
+  },
 ]

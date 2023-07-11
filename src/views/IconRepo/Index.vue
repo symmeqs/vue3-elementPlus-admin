@@ -3,9 +3,6 @@ import { ElMessage } from 'element-plus'
 import { useClipboard } from '@vueuse/core'
 import { iconList } from './iconRepo'
 
-// todo remove
-iconList.push(...iconList, ...iconList, ...iconList, ...iconList, ...iconList, ...iconList)
-
 const { copy } = useClipboard()
 
 function copyIcon(icon: string) {

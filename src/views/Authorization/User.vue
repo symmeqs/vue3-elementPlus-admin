@@ -2,9 +2,9 @@
 import { ref, watch } from 'vue'
 import { getExampleColumns } from './user-column-example'
 import { getSearchOptions, getUserData } from './user-mock-data'
+import UserForm from './UserForm.vue'
 import { TableSearch } from '@/components/TableSearch'
 import { useTableV2 } from '@/hooks/web/useTableV2'
-import { Dialog } from '@/components/Dialog'
 
 const { usePagination, tableV2Columns, filterGroupState, tableData } = useTableV2(getExampleColumns())
 const { pageState, pageConfig, handleSizeChange, handleCurrentChange } = usePagination()
@@ -28,81 +28,46 @@ const dialogVisible = ref(false)
 
 <template>
   <el-card>
-    <Dialog v-model="dialogVisible" title="编辑">
-      <el-form>
-        <el-row :gutter="20">
-          <el-col :span="8">
-            <el-form-item label="头像">
-              <el-input />
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row :gutter="20">
-          <el-col :span="8">
-            <el-form-item label="姓名">
-              <el-input />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="角色">
-              <el-input />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="部门">
-              <el-input />
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row :gutter="20">
-          <!-- <el-col :span="8"> -->
-          <el-form-item label="电话号码">
-            <el-input />
-          </el-form-item>
-          <el-form-item label="邮箱">
-            <el-input />
-          </el-form-item>
-          <!-- </el-col> -->
-        </el-row>
-      </el-form>
-    </Dialog>
+    <UserForm v-model="dialogVisible" />
 
-    <div class="flex justify-between flex-row-reverse mb-6 w-full">
-      <TableSearch :select-options="getSearchOptions()" @handle-search="handleSearch" />
-      <div class="flex">
-        <el-button type="primary" @click="dialogVisible = true">
-          新增
-        </el-button>
-        <el-button type="danger">
-          删除
-        </el-button>
-        <el-button>提交审批</el-button>
-        <el-button>批量编辑</el-button>
+    <div v-if="!dialogVisible">
+      <div class="flex justify-between flex-row-reverse mb-6 w-full">
+        <TableSearch :select-options="getSearchOptions()" @handle-search="handleSearch" />
+        <div class="flex">
+          <el-button type="primary" @click="dialogVisible = true">
+            新增
+          </el-button>
+          <el-button type="danger" @click="dialogVisible = false">
+            删除
+          </el-button>
+          <el-button>提交审批</el-button>
+          <el-button>批量编辑</el-button>
+        </div>
       </div>
-    </div>
 
-    <div class="h-[700px]">
-      <el-auto-resizer>
-        <template #default="{ height, width }">
-          <el-table-v2
-            :columns="tableV2Columns"
-            :data="tableData"
-            :width="width"
-            :height="height"
-            fixed
-          />
-        </template>
-      </el-auto-resizer>
+      <div class="h-[700px]">
+        <el-auto-resizer>
+          <template #default="{ height, width }">
+            <el-table-v2
+              :columns="tableV2Columns"
+              :data="tableData"
+              :width="width"
+              :height="height"
+              fixed
+            />
+          </template>
+        </el-auto-resizer>
+      </div>
+      <el-pagination
+        v-model:current-page="pageState.currentPage"
+        v-model:page-size="pageState.pageSize"
+        :page-sizes="pageConfig.pageSizes"
+        :layout="pageConfig.layout"
+        :total="pageState.total"
+        class="mt-3"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+      />
     </div>
-    <el-pagination
-      v-model:current-page="pageState.currentPage"
-      v-model:page-size="pageState.pageSize"
-      :page-sizes="pageConfig.pageSizes"
-      :layout="pageConfig.layout"
-      :total="pageState.total"
-      class="mt-3"
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-    />
   </el-card>
 </template>

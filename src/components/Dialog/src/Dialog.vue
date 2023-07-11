@@ -22,6 +22,7 @@ const isFullScreen = ref(false)
       v-bind="getBindValue()"
       :close-on-click-modal="false"
       destroy-on-close
+      draggable
       :fullscreen="isFullScreen"
     >
       <template #header>
@@ -40,7 +41,7 @@ const isFullScreen = ref(false)
         </div>
       </template>
 
-      <el-scrollbar>
+      <el-scrollbar class="p-4">
         <slot />
       </el-scrollbar>
 
